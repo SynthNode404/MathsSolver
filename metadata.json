@@ -1,0 +1,7 @@
+{
+  "name": "Universal Solver",
+  "description": "A versatile problem solver. Type your question or upload an image, and get a detailed solution.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
