@@ -1,12 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import { Part } from '../types';
 
-const API_KEY = process.env.API_KEY;
-if (!API_KEY) {
-    throw new Error("API_KEY environment variable not set");
-}
-
-const ai = new GoogleGenAI({ apiKey: API_KEY });
 const model = 'gemini-2.5-flash';
 
 const fileToGenerativePart = async (file: File): Promise<Part> => {
@@ -38,6 +32,12 @@ const fileToGenerativePart = async (file: File): Promise<Part> => {
 
 export const solveProblem = async (text: string, image?: File): Promise<string> => {
   try {
+    const API_KEY = process.env.API_KEY;
+    if (!API_KEY) {
+        throw new Error("API_KEY environment variable not set");
+    }
+    const ai = new GoogleGenAI({ apiKey: API_KEY });
+
     const prompt = `You are a highly intelligent problem solver. Solve the problem described in the following text and/or image.
 Provide a clear, step-by-step explanation if applicable.
 Conclude with the final answer, clearly marked.
